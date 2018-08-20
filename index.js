@@ -17,56 +17,57 @@ var gameInterval = null
  * but all of your work should happen below.
  */
 
-function checkCollision(rock)
-{
-  // implement me!
-  // use the comments below to guide you!
-  const top = positionToInteger(rock.style.top)
+ /**
+  * Be aware of what's above this line,
+  * but all of your work should happen below.
+  */
+ 
+ function checkCollision(rock) {
+   // implement me!
+   // use the comments below to guide you!
+   const top = positionToInteger(rock.style.top)
+ 
+   // rocks are 20px high
+   // DODGER is 20px high
+   // GAME_HEIGHT - 20 - 20 = 360px;
+   if (top > 360) {
+     const dodgerLeftEdge = positionToInteger(DODGER.style.left)
+ 
+     // FIXME: The DODGER is 40 pixels wide -- how do we get the right edge?
+     const dodgerRightEdge = dodgerLeftEdge + 40;
+ 
+     const rockLeftEdge = positionToInteger(rock.style.left)
+ 
+     // FIXME: The rock is 20 pixel's wide -- how do we get the right edge?
+     const rockRightEdge = rockLeftEdge + 20;
+ 
+     /*if (false
+                * Think about it -- what's happening here?
+                * There's been a collision if one of three things is true:
+                * 1. The rock's left edge is < the DODGER's left edge,
+                *    and the rock's right edge is > the DODGER's left edge;
+                * 2. The rock's left edge is > the DODGER's left edge,
+                *    and the rock's right edge is < the DODGER's right edge;
+                * 3. The rock's left edge is < the DODGER's right edge,
+                *    and the rock's right edge is > the DODGER's right edge
+                ) {
+       return true
+     }*/
+     if (rockLeftEdge <= dodgerLeftEdge && rockRightEdge >= dodgerLeftEdge) {
+       return true
+     }
+     else if (rockLeftEdge >= dodgerLeftEdge && rockRightEdge <= dodgerRightEdge) {
+       return true
+     }
+     else if (rockLeftEdge <= dodgerRightEdge && rockRightEdge >= dodgerRightEdge) {
+       return true
+     }
+     else {
+       return false
+     }
+   }
+ }
 
-  // rocks are 20px high
-  // DODGER is 20px high
-  // GAME_HEIGHT - 20 - 20 = 360px;
-  if (top > 360)
-  {
-    const dodgerLeftEdge = positionToInteger(DODGER.style.left)
-
-    // FIXME: The DODGER is 40 pixels wide -- how do we get the right edge?
-    const dodgerRightEdge = dodgerLeftEdge+40;
-
-    const rockLeftEdge = positionToInteger(rock.style.left)
-
-    // FIXME: The rock is 20 pixel's wide -- how do we get the right edge?
-    const rockRightEdge = dodgerLeftEdge+20;
-
-  /*  if (false /**
-               * Think about it -- what's happening here?
-               * There's been a collision if one of three things is true:
-               * 1. The rock's left edge is < the DODGER's left edge,
-               *    and the rock's right edge is > the DODGER's left edge;
-               * 2. The rock's left edge is > the DODGER's left edge,
-               *    and the rock's right edge is < the DODGER's right edge;
-               * 3. The rock's left edge is < the DODGER's right edge,
-               *    and the rock's right edge is > the DODGER's right edge
-               /) {*/
-               if (dodgerLeftEdge>=rockLeftEdge&&dodgerLeftEdge=<rockRightEdge)
-               {
-                 return true;
-               }
-              else if(dodgerLeftEdge<=rockLeftEdge&&dodgerRightEdge>=rockRightEdge)
-               {
-                 return true;
-               }
-               else if(dodgerRightEdge>=rockLeftEdge&&dodgerRightEdge=<rockRightEdge)
-               {
-                 return true;
-               }
-               else
-               {
-                 return false;
-               }
-    //}
-  }
-}
 
 function createRock(x) {
   const rock = document.createElement('div')
