@@ -129,7 +129,7 @@ function createRock(x) {
        }
 
   // Finally, return the rock element you've created
-  
+
 }
 
 /**
@@ -138,8 +138,14 @@ function createRock(x) {
  * and removing the `moveDodger` event listener.
  * Finally, alert "YOU LOSE!" to the player.
  */
-function endGame() 
+function endGame()
 {
+  gameInterval = clearInterval()
+  for (var i = 0; i < ROCKS.length; i++) {
+    ROCKS[i].remove()
+  }
+  window.removeEventListener('keydown', moveDodger);
+
 }
 
 function moveDodger(e) {
