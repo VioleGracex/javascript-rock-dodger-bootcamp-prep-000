@@ -119,10 +119,17 @@ function createRock(x) {
 
   // Add the rock to ROCKS so that we can remove all rocks
   // when there's a collision
-  ROCKS.push(rock)
+  else if (top < GAME_HEIGHT) {
+         top += 2
+         rock.style.top = `${top}px`
+        window.requestAnimationFrame(moveRock);
+       }
+       else {
+         ROCKS.shift()
+       }
 
   // Finally, return the rock element you've created
-  return rock
+  
 }
 
 /**
@@ -131,7 +138,8 @@ function createRock(x) {
  * and removing the `moveDodger` event listener.
  * Finally, alert "YOU LOSE!" to the player.
  */
-function endGame() {
+function endGame() 
+{
 }
 
 function moveDodger(e) {
